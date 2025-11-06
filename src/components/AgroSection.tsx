@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Leaf, Sprout } from "lucide-react";
 import agroImage from "@/assets/agro-section.jpg";
+import { scrollToSection } from "@/lib/scroll";
 
 export const AgroSection = () => {
+  const handleContactClick = () => {
+    scrollToSection('contato', 20);
+  };
   return (
     <section className="py-16 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
@@ -38,7 +42,12 @@ export const AgroSection = () => {
                 </div>
               </div>
             </div>
-            <Button size="lg" variant="secondary" className="font-semibold">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="font-semibold"
+              onClick={handleContactClick}
+            >
               Saiba mais
             </Button>
           </div>

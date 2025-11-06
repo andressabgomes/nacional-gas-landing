@@ -15,7 +15,8 @@
     "db:create-admin": "node scripts/create-admin.mjs",
     "db:create-admin-user": "node scripts/create-admin-user.mjs",
     "db:create-admin-simple": "node scripts/create-admin-simple.mjs",
-    "github:setup": "node scripts/setup-github.mjs"
+    "github:setup": "node scripts/setup-github.mjs",
+    "github:push": "node scripts/push-to-github.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

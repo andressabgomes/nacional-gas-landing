@@ -1,7 +1,12 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-industrial.jpg";
+import { scrollToSection } from "@/lib/scroll";
 
 export const Hero = () => {
+  const handleContactClick = () => {
+    scrollToSection('contato', 20);
+  };
+
   return (
     <section className="relative bg-primary text-primary-foreground overflow-hidden">
       <div className="container mx-auto px-4 py-16 lg:py-24">
@@ -17,6 +22,7 @@ export const Hero = () => {
               size="lg" 
               variant="secondary"
               className="font-semibold"
+              onClick={handleContactClick}
             >
               Fale com um consultor
             </Button>
