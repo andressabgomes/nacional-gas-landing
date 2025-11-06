@@ -39,9 +39,46 @@ export const Contact = () => {
         });
       } else {
         console.log("Lead salvo com sucesso. ID:", data);
+        
+        // Enviar emails (cliente e backoffice) via Edge Function
+        if (data) {
+          try {
+            console.log("📧 Enviando emails... Dados do lead:", data);
+            const { data: emailResponse, error: emailError } = await supabase.functions.invoke('send-lead-emails', {
+              body: data
+            });
+            
+            if (emailError) {
+              console.error("❌ Erro ao enviar emails:", emailError);
+              console.error("Detalhes do erro:", JSON.stringify(emailError, null, 2));
+            } else {
+              console.log("✅ Resposta do envio de emails:", JSON.stringify(emailResponse, null, 2));
+              
+              // Mostrar informações sobre o envio
+              if (emailResponse?.backofficeEmailSent) {
+                console.log("✅ Email para backoffice enviado com sucesso! ID:", emailResponse.backofficeEmailId);
+              } else {
+                console.warn("⚠️ Email para backoffice não foi enviado:", emailResponse?.backofficeEmailError);
+              }
+              
+              if (emailResponse?.clientEmailSent) {
+                console.log("✅ Email para cliente enviado com sucesso! ID:", emailResponse.clientEmailId);
+              } else if (emailResponse?.clientEmailSkipped) {
+                console.warn("⚠️ Email para cliente pulado (domínio de teste):", emailResponse.clientEmailError);
+              } else {
+                console.warn("⚠️ Email para cliente não foi enviado:", emailResponse?.clientEmailError);
+              }
+            }
+          } catch (emailError) {
+            // Não bloquear o sucesso do formulário se o email falhar
+            console.error("❌ Exceção ao enviar emails:", emailError);
+            console.error("Stack trace:", emailError.stack);
+          }
+        }
+        
         toast({
           title: "Mensagem enviada!",
-          description: "Entraremos em contato em breve.",
+          description: "Entraremos em contato em breve. Verifique seu email para confirmação.",
         });
         setFormData({ name: "", email: "", phone: "", company: "", message: "" });
       }

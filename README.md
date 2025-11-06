@@ -110,6 +110,22 @@ Para mais detalhes, consulte o [guia de configuração Supabase](docs/SUPABASE.m
 - `npm run db:check` - Verifica status do banco
 - `npm run db:sql` - Gera arquivo SQL
 - `npm run db:test-rpc` - Testa função RPC
+- `npm run test:email` - Testa envio de emails
+
+## 📧 Configuração de Emails
+
+Este projeto envia emails de confirmação para clientes e notificações para o backoffice quando um novo lead é criado.
+
+**Configuração rápida:**
+
+1. Crie uma conta no [Resend](https://resend.com) (gratuito)
+2. Obtenha sua API Key
+3. Configure no Supabase Dashboard:
+   - Vá em **Edge Functions** → **Secrets**
+   - Adicione `RESEND_API_KEY` e `BACKOFFICE_EMAIL`
+4. A Edge Function já está deployada automaticamente
+
+Para mais detalhes, consulte o [guia completo de configuração de emails](docs/EMAIL_SETUP.md).
 
 ## 🚀 Deploy
 
@@ -133,6 +149,8 @@ Certifique-se de configurar as seguintes variáveis de ambiente na plataforma de
 
 - [Documentação do Banco de Dados](docs/DATABASE.md)
 - [Guia de Configuração Supabase](docs/SUPABASE.md)
+- [Configuração de Emails](docs/EMAIL_SETUP.md) - Guia completo
+- [Configuração Rápida de Emails](docs/EMAIL_SETUP_QUICK.md) - Setup em 5 minutos
 
 ## 🤝 Contribuindo
 

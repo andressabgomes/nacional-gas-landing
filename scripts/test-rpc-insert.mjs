@@ -28,7 +28,9 @@ async function testRPCInsert() {
       console.log(`   📋 Detalhes: ${JSON.stringify(error, null, 2)}\n`);
     } else {
       console.log('   ✅ Inserção via RPC bem-sucedida!');
-      console.log(`   📝 Lead criado com ID: ${data}\n`);
+      console.log(`   📝 Lead criado com ID: ${data.id}`);
+      console.log(`   📋 Dados completos:`, JSON.stringify(data, null, 2));
+      console.log('');
       
       // Limpar usando admin
       const admin = createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.SERVICE_ROLE_KEY, {
@@ -38,7 +40,7 @@ async function testRPCInsert() {
         }
       });
       
-      await admin.from('leads').delete().eq('id', data);
+      await admin.from('leads').delete().eq('id', data.id);
       console.log('   🗑️  Lead removido\n');
     }
   } catch (err) {

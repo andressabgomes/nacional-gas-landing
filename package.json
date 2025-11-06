@@ -15,6 +15,9 @@
     "db:create-admin": "node scripts/create-admin.mjs",
     "db:create-admin-user": "node scripts/create-admin-user.mjs",
     "db:create-admin-simple": "node scripts/create-admin-simple.mjs",
+    "test:email": "node scripts/test-email-function.mjs",
+    "check:email": "node scripts/check-email-config.mjs",
+    "test:email:real": "node scripts/test-email-real.mjs",
     "github:setup": "node scripts/setup-github.mjs",
     "github:push": "node scripts/push-to-github.mjs"
   },
